@@ -6,6 +6,8 @@ import (
 	"strconv"
 )
 
+type opFunc func(int, int) (int, error)
+
 func add(x int, y int) (int, error)  { return x + y, nil }
 func sub(x int, y int) (int, error)  { return x - y, nil }
 func mult(x int, y int) (int, error) { return x * y, nil }
@@ -16,7 +18,7 @@ func div(x int, y int) (int, error) {
 	return x / y, nil
 }
 
-var myop = map[string]func(int, int) (int, error){
+var myop = map[string]opFunc{
 	"+": add,
 	"-": sub,
 	"*": mult,
